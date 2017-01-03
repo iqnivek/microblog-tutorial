@@ -11,6 +11,9 @@
     {% if user.last_seen %}
       <p>Last seen on {{ user.last_seen }}</p>
     {% endif %}
+    {% if user.id == g.user.id %}
+      <p><a href="{{ url_for('edit') }}">Edit</a></p>
+    {% endif %}
   </div>
   <hr>
   {% for post in posts %}
