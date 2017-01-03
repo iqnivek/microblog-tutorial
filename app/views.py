@@ -14,8 +14,9 @@ def load_user(id):
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
-    user = {'nickname': 'Kevin'}
+    user = g.user
     posts = [
         {
             'author': {'nickname': 'John'},
@@ -61,3 +62,8 @@ def login():
         title='Sign in',
         form=form
     )
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
