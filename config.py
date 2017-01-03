@@ -9,7 +9,9 @@ SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
 WTF_CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'
 
+'''
 OPENID_PROVIDERS = [
     {'name': 'Yahoo', 'url': 'https://me.yahoo.com'},
     {'name': 'Flickr', 'url': 'http://www.flickr.com/<username>'}
 ]
+'''
