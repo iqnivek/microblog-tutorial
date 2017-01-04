@@ -18,6 +18,8 @@ Production:
 ./runp.py
 ```
 
+Go to localhost:5000
+
 ## Tests
 
 ```
