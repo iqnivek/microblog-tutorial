@@ -61,7 +61,7 @@ def user(nickname):
 @app.route('/edit', methods=['GET', 'POST'])
 @login_required
 def edit():
-    form = EditForm()
+    form = EditForm(g.user.nickname)
     if form.validate_on_submit():
         g.user.nickname = form.nickname.data
         g.user.about_me = form.about_me.data
@@ -85,9 +85,11 @@ def login():
 
         email = form.email.data
         user = User.query.filter_by(email=email)
-        user = User(nickname=email.split('@')[0], email=email)
-        db.session.add(user)
-        db.session.commit()
+        if user is None:
+            nickname = User.make_unique_nickname(email.split('@')[0])
+            user = User(nickname=nickname, email=email)
+            db.session.add(user)
+            db.session.commit()
 
         remember_me = False
         if 'remember_me' in session:
